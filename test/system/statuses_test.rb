@@ -15,12 +15,12 @@ class StatusesTest < ApplicationSystemTestCase
     click_on "New status"
 
     fill_in "Address", with: @status.address
+    fill_in "Category", with: @status.category
     fill_in "Comment", with: @status.comment
     fill_in "End date", with: @status.end_date
     fill_in "Name", with: @status.name
     fill_in "Position", with: @status.position
     fill_in "Start date", with: @status.start_date
-    fill_in "Type", with: @status.type
     fill_in "User", with: @status.user_id
     click_on "Create Status"
 
@@ -33,12 +33,12 @@ class StatusesTest < ApplicationSystemTestCase
     click_on "Edit this status", match: :first
 
     fill_in "Address", with: @status.address
+    fill_in "Category", with: @status.category
     fill_in "Comment", with: @status.comment
     fill_in "End date", with: @status.end_date
     fill_in "Name", with: @status.name
     fill_in "Position", with: @status.position
     fill_in "Start date", with: @status.start_date
-    fill_in "Type", with: @status.type
     fill_in "User", with: @status.user_id
     click_on "Update Status"
 
