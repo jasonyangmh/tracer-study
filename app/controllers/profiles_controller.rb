@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[ show edit update destroy ]
-  before_action :check_current_profile, only: %i[ new ]
+  before_action :check_existing_profile, only: %i[ new ]
+  before_action :check_current_profile, only: %i[ edit ]
 
   # GET /profiles or /profiles.json
   def index
@@ -8,8 +9,8 @@ class ProfilesController < ApplicationController
   end
 
   # GET /profiles/1 or /profiles/1.json
-  # def show
-  # end
+  def show
+  end
 
   # GET /profiles/new
   def new
@@ -70,8 +71,15 @@ class ProfilesController < ApplicationController
     end
 
     # Prevent user from creating new profile if profile already exists
-    def check_current_profile
+    def check_existing_profile
       if Profile.find_by(user_id: current_user.id)
+        redirect_to profiles_url
+      end
+    end
+
+    # Prevent user to edit not their own profile
+    def check_current_profile
+      if current_user.id != params[:id]
         redirect_to profiles_url
       end
     end
