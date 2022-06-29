@@ -17,7 +17,7 @@ class StatusesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create status" do
     assert_difference("Status.count") do
-      post statuses_url, params: { status: { address: @status.address, end_date: @status.end_date, name: @status.name, position: @status.position, start_date: @status.start_date, type: @status.type, user_id: @status.user_id } }
+      post statuses_url, params: { status: { address: @status.address, comment: @status.comment, end_date: @status.end_date, name: @status.name, position: @status.position, start_date: @status.start_date, type: @status.type, user_id: @status.user_id } }
     end
 
     assert_redirected_to status_url(Status.last)
@@ -34,7 +34,7 @@ class StatusesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update status" do
-    patch status_url(@status), params: { status: { address: @status.address, end_date: @status.end_date, name: @status.name, position: @status.position, start_date: @status.start_date, type: @status.type, user_id: @status.user_id } }
+    patch status_url(@status), params: { status: { address: @status.address, comment: @status.comment, end_date: @status.end_date, name: @status.name, position: @status.position, start_date: @status.start_date, type: @status.type, user_id: @status.user_id } }
     assert_redirected_to status_url(@status)
   end
 

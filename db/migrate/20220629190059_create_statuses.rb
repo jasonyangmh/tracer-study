@@ -7,6 +7,7 @@ class CreateStatuses < ActiveRecord::Migration[7.0]
       t.text :address
       t.date :start_date
       t.date :end_date
+      t.text :comment
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

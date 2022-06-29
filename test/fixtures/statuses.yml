@@ -7,6 +7,7 @@ one:
   address: MyText
   start_date: 2022-06-30
   end_date: 2022-06-30
+  comment: MyText
   user: one
 
 two:
@@ -16,4 +17,5 @@ two:
   address: MyText
   start_date: 2022-06-30
   end_date: 2022-06-30
+  comment: MyText
   user: two
