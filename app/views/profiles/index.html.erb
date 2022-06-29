@@ -7,9 +7,9 @@
   <% if profile %>
     <%= render profile %>
     <p>
-      <%= link_to "Show this profile", profile %>
+    <%= link_to "Edit profile", edit_profile_path(profile) %>
     </p>
+  <% else %>
+    <%= link_to "New profile", new_profile_path %>
   <% end %>
 </div>
-
-<%= link_to "New profile", new_profile_path %>
