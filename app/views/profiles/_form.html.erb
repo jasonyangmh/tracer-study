@@ -28,7 +28,10 @@
 
   <div>
     <%= form.label :gender, style: "display: block" %>
-    <%= form.text_field :gender %>
+    <%= form.radio_button :gender, "Male" %>
+    <%= form.label :gender_male, "Male" %>
+    <%= form.radio_button :age, "Female" %>
+    <%= form.label :gender_female, "Female" %>
   </div>
 
   <div>
