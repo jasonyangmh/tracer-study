@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[ show edit update destroy ]
+  before_action :redirect_to_index, only: %i[ show ]
   before_action :check_existing_profile, only: %i[ new ]
   before_action :check_current_profile, only: %i[ edit ]
 
@@ -70,6 +71,11 @@ class ProfilesController < ApplicationController
       params.require(:profile).permit(:name, :birthplace, :birthdate, :gender, :address, :phone_number, :major, :graduation_year, :user_id)
     end
 
+    # Redirect disabled actions to index
+    def redirect_to_index
+      redirect_to profiles_url
+    end
+
     # Prevent user from creating new profile if profile already exists
     def check_existing_profile
       if Profile.find_by(user_id: current_user.id)
@@ -79,7 +85,7 @@ class ProfilesController < ApplicationController
 
     # Prevent user to edit not their own profile
     def check_current_profile
-      if current_user.id != params[:id]
+      if Profile.find_by(id: params[:id]).user_id != current_user.id
         redirect_to profiles_url
       end
     end
