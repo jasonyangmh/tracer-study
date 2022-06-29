@@ -65,6 +65,6 @@ class StatusesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def status_params
-      params.require(:status).permit(:type, :name, :position, :address, :start_date, :end_date, :comment, :user_id)
+      params.require(:status).permit(:category, :name, :position, :address, :start_date, :end_date, :comment, :user_id)
     end
 end
