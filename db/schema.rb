@@ -30,7 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_190059) do
   end
 
   create_table "statuses", force: :cascade do |t|
-    t.string "type"
+    t.string "category"
     t.string "name"
     t.string "position"
     t.text "address"
