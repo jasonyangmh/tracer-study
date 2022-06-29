@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[ show edit update destroy ]
+  before_action :check_current_profile, only: %i[ new ]
 
   # GET /profiles or /profiles.json
   def index
@@ -66,5 +67,12 @@ class ProfilesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def profile_params
       params.require(:profile).permit(:name, :birthplace, :birthdate, :gender, :address, :phone_number, :major, :graduation_year, :user_id)
+    end
+
+    # Prevent user from creating new profile if profile already exists
+    def check_current_profile
+      if Profile.find_by(user_id: current_user.id)
+        redirect_to profiles_url
+      end
     end
 end
