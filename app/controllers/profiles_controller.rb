@@ -6,7 +6,11 @@ class ProfilesController < ApplicationController
 
   # GET /profiles or /profiles.json
   def index
-    @profiles = Profile.all
+    if user_signed_in?
+      @profile = Profile.find_by(user_id: current_user.id)
+    elsif admin_signed_in?
+      @profiles = Profile.all
+    end
   end
 
   # GET /profiles/1 or /profiles/1.json
