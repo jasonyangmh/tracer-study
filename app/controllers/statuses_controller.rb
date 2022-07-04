@@ -3,7 +3,11 @@ class StatusesController < ApplicationController
 
   # GET /statuses or /statuses.json
   def index
-    @statuses = Status.all
+    if user_signed_in?
+      @statuses = Status.where(user_id: current_user.id)
+    elsif admin_signed_in?
+      @statuses = Status.all
+    end
   end
 
   # GET /statuses/1 or /statuses/1.json

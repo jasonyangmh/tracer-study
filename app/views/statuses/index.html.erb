@@ -3,8 +3,7 @@
 <h1>Statuses</h1>
 
 <div id="statuses">
-  <% statuses = @statuses.where(user_id: current_user.id) %>
-  <% statuses.each do |status| %>
+  <% @statuses.each do |status| %>
     <%= render status %>
     <p>
       <%= link_to "Show this status", status %>
