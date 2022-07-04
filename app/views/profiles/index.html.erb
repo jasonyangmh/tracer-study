@@ -1,0 +1,23 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Profiles</h1>
+
+<div id="profiles">
+  <% if user_signed_in? %>
+    <% if @profile %>
+      <%= render @profile %>
+      <p>
+        <%= link_to "Show this profile", @profile %>
+      </p>
+    <% else %>
+      <%= link_to "New profile", new_profile_path %>
+    <% end %>
+  <% elsif admin_signed_in? %>
+    <% @profiles.each do |profile| %>
+      <%= render profile %>
+      <p>
+        <%= link_to "Show this profile", profile %>
+      </p>
+    <% end %>
+  <% end %>
+</div>
