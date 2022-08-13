@@ -1,6 +1,7 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
+import "@fortawesome/fontawesome-free"
 
 //= jquery.min.js
 //= bootstrap.bundle.min.js
@@ -8,3 +9,4 @@ import "controllers"
 //= sb-admin-2.min.js
 //= jquery.dataTables.min.js
 //= dataTables.bootstrap4.min.js
+//= datatables-demo.js
