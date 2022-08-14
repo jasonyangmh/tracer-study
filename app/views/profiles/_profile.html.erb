@@ -58,8 +58,9 @@
         <input type="text" class="form-control form-control-user" placeholder="<%= profile.graduation_year %>" disabled>
       </div>
     </div>
-    <% if user_signed_in? %>
-      <%= link_to "Edit", edit_profile_path(profile), class: "btn btn-warning" %>
-    <% end %>
   </div>
 </div>
+
+<% if user_signed_in? %>
+  <%= link_to "Edit", edit_profile_path(profile), class: "btn btn-warning" %>
+<% end %>
