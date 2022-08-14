@@ -1,28 +1,50 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[ show edit update destroy ]
-  before_action :check_existing_profile, only: %i[ new ]
-  before_action :check_current_profile, only: %i[ edit ]
 
   # GET /profiles or /profiles.json
   def index
     if admin_signed_in?
       @profiles = Profile.all
+      respond_to do |format|
+        format.html
+        format.csv { send_data Profile.to_csv, filename: "profiles-#{DateTime.now.strftime("%d%m%Y%H%M")}.csv"}
+      end
     elsif user_signed_in?
-      check_existing_profile
+      redirect_to new_profile_url
     end
   end
 
   # GET /profiles/1 or /profiles/1.json
   def show
+    if admin_signed_in?
+      @statuses = Status.where(user_id: @profile.user_id)
+    elsif user_signed_in?
+      if @profile.user_id != current_user.id
+        # If their own profile exists, redirect to it
+        if @profile = Profile.find_by(user_id: current_user.id)
+          redirect_to profile_url(@profile)
+        # Redirect to new profile if it doesn't exist
+        else
+          redirect_to new_profile_url
+        end
+      end
+    end
   end
 
   # GET /profiles/new
   def new
-    @profile = Profile.new
+    if @profile = Profile.find_by(user_id: current_user.id)
+      redirect_to @profile
+    elsif
+      @profile = Profile.new
+    end
   end
 
   # GET /profiles/1/edit
   def edit
+    if Profile.find_by(id: params[:id]).user_id != current_user.id
+      redirect_to profiles_url
+    end
   end
 
   # POST /profiles or /profiles.json
@@ -72,19 +94,5 @@ class ProfilesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def profile_params
       params.require(:profile).permit(:name, :birthplace, :birthdate, :gender, :address, :phone_number, :major, :graduation_year, :user_id)
-    end
-
-    # Prevent user from creating new profile if profile already exists
-    def check_existing_profile
-      if @profile = Profile.find_by(user_id: current_user.id)
-        redirect_to @profile
-      end
-    end
-
-    # Prevent user to edit not their own profile
-    def check_current_profile
-      if Profile.find_by(id: params[:id]).user_id != current_user.id
-        redirect_to profiles_url
-      end
     end
 end

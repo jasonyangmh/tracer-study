@@ -3,10 +3,14 @@ class StatusesController < ApplicationController
 
   # GET /statuses or /statuses.json
   def index
-    if user_signed_in?
-      @statuses = Status.where(user_id: current_user.id)
-    elsif admin_signed_in?
+    if admin_signed_in?
       @statuses = Status.all
+      respond_to do |format|
+        format.html
+        format.csv { send_data Status.to_csv, filename: "statuses-#{DateTime.now.strftime("%d%m%Y%H%M")}.csv"}
+      end
+    elsif user_signed_in?
+      @statuses = Status.where(user_id: current_user.id)
     end
   end
 
@@ -42,7 +46,11 @@ class StatusesController < ApplicationController
   def update
     respond_to do |format|
       if @status.update(status_params)
-        format.html { redirect_to statuses_url, notice: "Status was successfully updated." }
+        if admin_signed_in?
+          format.html { redirect_to profile_url(Profile.find_by(user_id: @status.user_id)), notice: "Status was successfully updated." }
+        elsif user_signed_in?
+          format.html { redirect_to statuses_url, notice: "Status was successfully updated." }
+        end
         format.json { render :show, status: :ok, location: @status }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -56,7 +64,11 @@ class StatusesController < ApplicationController
     @status.destroy
 
     respond_to do |format|
-      format.html { redirect_to statuses_url, notice: "Status was successfully destroyed." }
+      if admin_signed_in?
+        format.html { redirect_to profile_url(Profile.find_by(user_id: @status.user_id)), notice: "Status was successfully destroyed." }
+      elsif user_signed_in?
+        format.html { redirect_to statuses_url, notice: "Status was successfully destroyed." }
+      end
       format.json { head :no_content }
     end
   end

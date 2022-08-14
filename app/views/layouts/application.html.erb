@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <%= favicon_link_tag 'favicon.ico' %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -25,7 +26,7 @@
           <!-- Sidebar - Brand -->
           <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
               <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fa-solid fa-school"></i>
+                <i class="fas fa-school"></i>
               </div>
               <div class="sidebar-brand-text mx-3">SMK MHS Batam</div>
           </a>
@@ -33,24 +34,28 @@
           <!-- Divider -->
           <hr class="sidebar-divider my-0">
 
+          <% if admin_signed_in? %>
           <!-- Nav Item - Dashboard -->
           <li class="nav-item">
-              <%= link_to '<i class="fas fa-gauge"></i><span>Dashboard</span>'.html_safe, statuses_path, class: "btn nav-link" %>
+              <%= link_to '<i class="fas fa-gauge"></i><span>    Dashboard</span>'.html_safe, root_path, class: "btn nav-link" %>
           </li>
-
-          <% if admin_signed_in? %>
           <!-- Nav Item - Alumni -->
           <li class="nav-item">
-              <%= link_to '<i class="fas fa-graduation-cap"></i></i><span>Alumni</span>'.html_safe, profiles_path, class: "btn nav-link" %>
+              <%= link_to '<i class="fas fa-graduation-cap"></i><span>    Alumni</span>'.html_safe, profiles_path, class: "btn nav-link" %>
           </li>
           <% end %>
+
+          <!-- Nav Item - Status -->
+          <li class="nav-item">
+              <%= link_to '<i class="fas fa-briefcase"></i><span>    Status</span>'.html_safe, statuses_path, class: "btn nav-link" %>
+          </li>
 
           <!-- Divider -->
           <hr class="sidebar-divider my-0">
 
           <!-- Nav Item - Logout -->
           <li class="nav-item">
-              <%= button_to '<i class="fas fa-right-from-bracket"></i><span>Logout</span>'.html_safe, destroy_user_session_path, method: :delete, class: "btn nav-link" %>
+              <%= button_to '<i class="fas fa-right-from-bracket"></i><span>    Logout</span>'.html_safe, destroy_user_session_path, method: :delete, class: "btn nav-link" %>
           </li>
 
       </ul>
@@ -90,6 +95,16 @@
 
           <!-- Begin Page Content -->
           <div class="container-fluid">
+              <% if notice %>
+              <div class="alert alert-success" role="notice">
+                  <div class="notice"><%= notice %></div>
+              </div>
+              <% end %>
+              <% if alert %>
+              <div class="alert alert-danger" role="alert">
+                  <div class="alert"><%= alert %></div>
+              </div>
+              <% end %>
               <%= yield %>
           </div>
           <!-- /.container-fluid -->

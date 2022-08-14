@@ -11,47 +11,61 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :category, style: "display: block" %>
-    <%= form.select :category, ["PNS", "Bekerja", "Kuliah", "Wiraswasta", "Belum Bekerja", "Tidak Bekerja"] %>
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Status</h6>
+    </div>
+    <div class="card-body">
+      <div class="field form-group">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <label>Kategori</label>
+          <div><%= form.select :category, ["PNS", "Bekerja", "Kuliah", "Wiraswasta", "Belum Bekerja", "Tidak Bekerja"] %></div>
+        </div>
+      </div>
+      <div class="field form-group">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <label>Nama tempat</label>
+          <%= form.text_field :name, class: "form-control form-control-user" %>
+        </div>
+      </div>
+      <div class="field form-group">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <label>Posisi atau jabatan</label>
+          <%= form.text_field :position, class: "form-control form-control-user" %>
+        </div>
+      </div>
+      <div class="field form-group">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <label>Alamat</label>
+          <%= form.text_field :address, class: "form-control form-control-user" %>
+        </div>
+      </div>
+      <div class="field form-group">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <label>Tanggal mulai</label>
+          <div><%= form.date_field :start_date %></div>
+        </div>
+      </div>
+      <div class="field form-group">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <label>Tanggal selesai</label>
+          <div><%= form.date_field :end_date %></div>
+        </div>
+      </div>
+      <div class="field form-group">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <label>Komentar atau catatan tambahan</label>
+          <%= form.text_area :comment, class: "form-control form-control-user" %>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.text_field :user_id, value: status.user_id? ? status.user_id : current_user.id, type: :hidden %>
   </div>
 
   <div>
-    <%= form.label :position, style: "display: block" %>
-    <%= form.text_field :position %>
-  </div>
-
-  <div>
-    <%= form.label :address, style: "display: block" %>
-    <%= form.text_area :address %>
-  </div>
-
-  <div>
-    <%= form.label :start_date, style: "display: block" %>
-    <%= form.date_field :start_date %>
-  </div>
-
-  <div>
-    <%= form.label :end_date, style: "display: block" %>
-    <%= form.date_field :end_date %>
-  </div>
-
-  <div>
-    <%= form.label :comment, style: "display: block" %>
-    <%= form.text_area :comment %>
-  </div>
-
-  <div>
-    <!-- <%= form.label :user_id, style: "display: block" %> -->
-    <%= form.text_field :user_id, value: current_user.id, type: :hidden %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
