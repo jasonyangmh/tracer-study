@@ -14,7 +14,11 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1 or /profiles/1.json
   def show
-    @statuses = Status.where(user_id: @profile.user_id)
+    if admin_signed_in?
+      @statuses = Status.where(user_id: @profile.user_id)
+    elsif user_signed_in?
+      check_current_profile
+    end
   end
 
   # GET /profiles/new
@@ -75,10 +79,17 @@ class ProfilesController < ApplicationController
       params.require(:profile).permit(:name, :birthplace, :birthdate, :gender, :address, :phone_number, :major, :graduation_year, :user_id)
     end
 
-    # Prevent user from creating new profile if profile already exists
+    # Prevent user from creating new profile if profile already exists amd redirect to their own profile
     def check_existing_profile
       if @profile = Profile.find_by(user_id: current_user.id)
         redirect_to @profile
+      end
+    end
+
+    # Prevent user from viewing not their own profile
+    def check_own_profile
+      if Profile.find_by(id: params[:id]).user_id != current_user.id
+        redirect_to profiles_url
       end
     end
 
