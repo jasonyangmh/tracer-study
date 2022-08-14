@@ -60,11 +60,12 @@
               <!-- Topbar Navbar -->
               <ul class="navbar-nav ml-auto">
 
+                  <% if user_signed_in? %>
                   <!-- Nav Item - User Information -->
                   <li class="nav-item">
                       <%= link_to profiles_path, class: "nav-link" do %>
                           <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                              <% if current_user.profile.name? %>
+                              <% if current_user.profile %>
                                   <%= current_user.profile.name %>
                               <% else %>
                                   <%= current_user.email %>
@@ -73,6 +74,7 @@
                           <%= image_tag("undraw_profile.svg", class: "img-profile rounded-circle") %>
                       <% end %>
                   </li>
+                  <% end %>
 
               </ul>
 
