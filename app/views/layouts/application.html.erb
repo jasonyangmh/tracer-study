@@ -90,6 +90,14 @@
 
           <!-- Begin Page Content -->
           <div class="container-fluid">
+              <% if notice or alert %>
+              <div class="card mb-4 py-3 border-left-danger">
+                  <div class="card-body">
+                      <p class="notice"><%= notice %></p>
+                      <p class="alert"><%= alert %></p>
+                  </div>
+              </div>
+              <% end %>
               <%= yield %>
           </div>
           <!-- /.container-fluid -->
