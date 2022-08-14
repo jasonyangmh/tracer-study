@@ -76,8 +76,8 @@ class ProfilesController < ApplicationController
 
     # Prevent user from creating new profile if profile already exists
     def check_existing_profile
-      if @post = Profile.find_by(user_id: current_user.id)
-        redirect_to @post
+      if @profile = Profile.find_by(user_id: current_user.id)
+        redirect_to @profile
       end
     end
 
