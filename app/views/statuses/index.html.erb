@@ -2,7 +2,9 @@
   <div class="card shadow mb-4">
     <div class="card-header py-3 d-sm-flex align-items-center justify-content-between">
       <h6 class="m-0 font-weight-bold text-primary">Status</h6>
-      <%= link_to '<i class="fas fa-download fa-sm text-white-50"></i> Generate CSV</a>'.html_safe, statuses_path(format: 'csv'), class: "d-none d-sm-inline-block btn btn-sm btn-info shadow-sm" %>
+      <% if admin_signed_in? %>
+        <%= link_to '<i class="fas fa-download fa-sm text-white-50"></i> Generate CSV</a>'.html_safe, statuses_path(format: 'csv'), class: "d-none d-sm-inline-block btn btn-sm btn-info shadow-sm" %>
+      <% end %>
     </div>
     <div class="card-body">
       <div class="table-responsive">
