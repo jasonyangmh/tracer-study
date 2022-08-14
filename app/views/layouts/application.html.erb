@@ -96,8 +96,13 @@
           <!-- Begin Page Content -->
           <div class="container-fluid">
               <% if notice %>
-              <div class="alert alert-success" role="alert">
+              <div class="alert alert-success" role="notice">
                   <div class="notice"><%= notice %></div>
+              </div>
+              <% end %>
+              <% if alert %>
+              <div class="alert alert-danger" role="alert">
+                  <div class="alert"><%= alert %></div>
               </div>
               <% end %>
               <%= yield %>
