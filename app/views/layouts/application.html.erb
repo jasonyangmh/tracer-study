@@ -34,22 +34,21 @@
           <!-- Divider -->
           <hr class="sidebar-divider my-0">
 
+          <% if admin_signed_in? %>
           <!-- Nav Item - Dashboard -->
           <li class="nav-item">
               <%= link_to '<i class="fas fa-gauge"></i><span>Dashboard</span>'.html_safe, root_path, class: "btn nav-link" %>
           </li>
-
-          <!-- Nav Item - Status -->
-          <li class="nav-item">
-              <%= link_to '<i class="fas fa-briefcase"></i><span>Status</span>'.html_safe, statuses_path, class: "btn nav-link" %>
-          </li>
-
-          <% if admin_signed_in? %>
           <!-- Nav Item - Alumni -->
           <li class="nav-item">
               <%= link_to '<i class="fas fa-graduation-cap"></i><span>Alumni</span>'.html_safe, profiles_path, class: "btn nav-link" %>
           </li>
           <% end %>
+
+          <!-- Nav Item - Status -->
+          <li class="nav-item">
+              <%= link_to '<i class="fas fa-briefcase"></i><span>Status</span>'.html_safe, statuses_path, class: "btn nav-link" %>
+          </li>
 
           <!-- Divider -->
           <hr class="sidebar-divider my-0">
