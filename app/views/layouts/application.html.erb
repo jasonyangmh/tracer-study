@@ -38,6 +38,13 @@
               <%= link_to '<i class="fas fa-gauge"></i><span>Dashboard</span>'.html_safe, statuses_path, class: "btn nav-link" %>
           </li>
 
+          <% if admin_signed_in? %>
+          <!-- Nav Item - Alumni -->
+          <li class="nav-item">
+              <%= link_to '<i class="fas fa-graduation-cap"></i></i><span>Alumni</span>'.html_safe, profiles_path, class: "btn nav-link" %>
+          </li>
+          <% end %>
+
           <!-- Divider -->
           <hr class="sidebar-divider my-0">
 
