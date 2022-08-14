@@ -1,42 +1,11 @@
-<div id="<%= dom_id profile %>">
-  <p>
-    <strong>Name:</strong>
-    <%= profile.name %>
-  </p>
-
-  <p>
-    <strong>Birthplace:</strong>
-    <%= profile.birthplace %>
-  </p>
-
-  <p>
-    <strong>Birthdate:</strong>
-    <%= profile.birthdate %>
-  </p>
-
-  <p>
-    <strong>Gender:</strong>
-    <%= profile.gender %>
-  </p>
-
-  <p>
-    <strong>Address:</strong>
-    <%= profile.address %>
-  </p>
-
-  <p>
-    <strong>Phone number:</strong>
-    <%= profile.phone_number %>
-  </p>
-
-  <p>
-    <strong>Major:</strong>
-    <%= profile.major %>
-  </p>
-
-  <p>
-    <strong>Graduation year:</strong>
-    <%= profile.graduation_year %>
-  </p>
-
-</div>
+<tr id="<%= dom_id profile %>">
+  <td><%= profile.name %></td>
+  <td><%= profile.birthplace %></td>
+  <td><%= profile.birthdate %></td>
+  <td><%= profile.gender %></td>
+  <td><%= profile.address %></td>
+  <td><%= profile.phone_number %></td>
+  <td><%= profile.major %></td>
+  <td><%= profile.graduation_year %></td>
+  <td><%= link_to "Tampilkan", profile %></td>
+</tr>
