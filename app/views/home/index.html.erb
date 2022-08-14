@@ -1,15 +1,74 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-<% if user_signed_in? %>
-  <%= link_to "Profile", profiles_path %>
-  <%= link_to "Status", statuses_path %>
-  <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
-<% elsif admin_signed_in? %>
-  <%= link_to "Profiles", profiles_path %>
-  <%= link_to "Statuses", statuses_path %>
-  <%= button_to "Admin Sign Out", destroy_admin_session_path, method: :delete %>
-<% else %>
-  <%= link_to "Sign Up", new_user_registration_path %>
-  <%= link_to "Sign In", new_user_session_path %>
-  <%= link_to "Admin Sign In", new_admin_session_path %>
-<% end %>
+<!-- Content Row -->
+<div class="row">
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                            Alumni terdaftar</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%= User.all.count %></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                            Alumni yang sudah melengkapi profil</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%= Profile.all.count %></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                            Alumni yang sudah mengisi status</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%= Status.distinct.count('user_id') %></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-circle-check fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                            Total status terkumpul</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%= Status.all.count %></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-briefcase fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Content Row -->
