@@ -9,4 +9,3 @@ import "@fortawesome/fontawesome-free"
 //= sb-admin-2.min.js
 //= jquery.dataTables.min.js
 //= dataTables.bootstrap4.min.js
-//= datatables-demo.js

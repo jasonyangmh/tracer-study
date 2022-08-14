@@ -1,14 +1,46 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Statuses</h1>
-
 <div id="statuses">
-  <% @statuses.each do |status| %>
-    <%= render status %>
-    <p>
-      <%= link_to "Show this status", status %>
-    </p>
-  <% end %>
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Status</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+          <tr>
+            <th>Kategori</th>
+            <th>Nama</th>
+            <th>Posisi</th>
+            <th>Alamat</th>
+            <th>Tanggal mulai</th>
+            <th>Tanggal selesai</th>
+            <th>Komentar</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>Kategori</th>
+              <th>Nama</th>
+              <th>Posisi</th>
+              <th>Alamat</th>
+              <th>Tanggal mulai</th>
+              <th>Tanggal selesai</th>
+              <th>Komentar</th>
+              <th></th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <% @statuses.each do |status| %>
+              <%= render status %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 
 <%= link_to "New status", new_status_path %>
