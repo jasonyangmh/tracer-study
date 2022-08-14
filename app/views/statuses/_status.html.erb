@@ -6,6 +6,6 @@
   <td><%= status.start_date %></td>
   <td><%= status.end_date %></td>
   <td><%= status.comment %></td>
-  <td><%= link_to '<span class="text">Edit</span>'.html_safe, edit_status_path(status), class: "btn btn-warning" %></td>
-  <td><%= button_to '<span class="text">Hapus</span>'.html_safe, status, method: :delete, class: "btn btn-danger" %></td>
+  <td><%= link_to "Edit", edit_status_path(status), class: "btn btn-warning" %></td>
+  <td><%= button_to "Hapus", status, method: :delete, class: "btn btn-danger" %></td>
 </tr>
