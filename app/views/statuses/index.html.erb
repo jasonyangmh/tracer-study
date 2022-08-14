@@ -32,4 +32,6 @@
   </div>
 </div>
 
-<%= link_to "Tambah status", new_status_path %>
+<% if user_signed_in? %>
+  <%= link_to "Tambah status", new_status_path %>
+<% end %>
