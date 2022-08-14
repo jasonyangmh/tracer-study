@@ -18,20 +18,9 @@
             <th>Tanggal selesai</th>
             <th>Komentar</th>
             <th></th>
+            <th></th>
           </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>Kategori</th>
-              <th>Nama</th>
-              <th>Posisi</th>
-              <th>Alamat</th>
-              <th>Tanggal mulai</th>
-              <th>Tanggal selesai</th>
-              <th>Komentar</th>
-              <th></th>
-            </tr>
-          </tfoot>
           <tbody>
             <% @statuses.each do |status| %>
               <%= render status %>
@@ -43,4 +32,4 @@
   </div>
 </div>
 
-<%= link_to "New status", new_status_path %>
+<%= link_to "Tambah status", new_status_path %>
