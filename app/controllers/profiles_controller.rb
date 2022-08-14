@@ -1,15 +1,14 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[ show edit update destroy ]
-  before_action :redirect_to_index, only: %i[ show ]
   before_action :check_existing_profile, only: %i[ new ]
   before_action :check_current_profile, only: %i[ edit ]
 
   # GET /profiles or /profiles.json
   def index
-    if user_signed_in?
-      @profile = Profile.find_by(user_id: current_user.id)
-    elsif admin_signed_in?
+    if admin_signed_in?
       @profiles = Profile.all
+    elsif user_signed_in?
+      check_existing_profile
     end
   end
 
@@ -32,7 +31,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to profiles_url, notice: "Profile was successfully created." }
+        format.html { redirect_to @profile, notice: "Profile was successfully created." }
         format.json { render :show, status: :created, location: @profile }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -75,15 +74,10 @@ class ProfilesController < ApplicationController
       params.require(:profile).permit(:name, :birthplace, :birthdate, :gender, :address, :phone_number, :major, :graduation_year, :user_id)
     end
 
-    # Redirect disabled actions to index
-    def redirect_to_index
-      redirect_to profiles_url
-    end
-
     # Prevent user from creating new profile if profile already exists
     def check_existing_profile
-      if Profile.find_by(user_id: current_user.id)
-        redirect_to profiles_url
+      if @profile = Profile.find_by(user_id: current_user.id)
+        redirect_to @profile
       end
     end
 

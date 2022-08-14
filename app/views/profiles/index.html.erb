@@ -1,23 +1,50 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Profiles</h1>
-
-<div id="profiles">
-  <% if user_signed_in? %>
-    <% if @profile %>
-      <%= render @profile %>
-      <p>
-        <%= link_to "Show this profile", @profile %>
-      </p>
-    <% else %>
-      <%= link_to "New profile", new_profile_path %>
-    <% end %>
-  <% elsif admin_signed_in? %>
-    <% @profiles.each do |profile| %>
-      <%= render profile %>
-      <p>
-        <%= link_to "Show this profile", profile %>
-      </p>
-    <% end %>
-  <% end %>
-</div>
+<% if admin_signed_in? %>
+  <div id="statuses">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Alumni</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Tempat lahir</th>
+              <th>Tanggal lahir</th>
+              <th>Jenis kelamin</th>
+              <th>Alamat</th>
+              <th>Nomor telepon</th>
+              <th>Jurusan</th>
+              <th>Tahun</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Nama</th>
+                <th>Tempat lahir</th>
+                <th>Tanggal lahir</th>
+                <th>Jenis kelamin</th>
+                <th>Alamat</th>
+                <th>Nomor telepon</th>
+                <th>Jurusan</th>
+                <th>Tahun kelulusan</th>
+                <th></th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <% @profiles.each do |profile| %>
+                <%= render partial: "profile_row", locals: {profile: profile} %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<% elsif user_signed_in? %>
+  <%= link_to "Buat profil baru", new_profile_path %>
+<% end %>

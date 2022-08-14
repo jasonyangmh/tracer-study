@@ -1,18 +1,116 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tracerstudy</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Tracer Study</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+  <body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
+
+          <!-- Sidebar - Brand -->
+          <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+              <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fa-solid fa-school"></i>
+              </div>
+              <div class="sidebar-brand-text mx-3">SMK MHS Batam</div>
+          </a>
+
+          <!-- Divider -->
+          <hr class="sidebar-divider my-0">
+
+          <!-- Nav Item - Dashboard -->
+          <li class="nav-item">
+              <%= link_to '<i class="fas fa-gauge"></i><span>Dashboard</span>'.html_safe, statuses_path, class: "btn nav-link" %>
+          </li>
+
+          <% if admin_signed_in? %>
+          <!-- Nav Item - Alumni -->
+          <li class="nav-item">
+              <%= link_to '<i class="fas fa-graduation-cap"></i></i><span>Alumni</span>'.html_safe, profiles_path, class: "btn nav-link" %>
+          </li>
+          <% end %>
+
+          <!-- Divider -->
+          <hr class="sidebar-divider my-0">
+
+          <!-- Nav Item - Logout -->
+          <li class="nav-item">
+              <%= button_to '<i class="fas fa-right-from-bracket"></i><span>Logout</span>'.html_safe, destroy_user_session_path, method: :delete, class: "btn nav-link" %>
+          </li>
+
+      </ul>
+      <!-- End of Sidebar -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+
+          <!-- Main Content -->
+          <div id="content">
+          <!-- Topbar -->
+          <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+              <!-- Topbar Navbar -->
+              <ul class="navbar-nav ml-auto">
+
+                  <% if user_signed_in? %>
+                  <!-- Nav Item - User Information -->
+                  <li class="nav-item">
+                      <%= link_to profiles_path, class: "nav-link" do %>
+                          <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                              <% if current_user.profile %>
+                                  <%= current_user.profile.name %>
+                              <% else %>
+                                  <%= current_user.email %>
+                              <% end %>
+                          </span>
+                          <%= image_tag("undraw_profile.svg", class: "img-profile rounded-circle") %>
+                      <% end %>
+                  </li>
+                  <% end %>
+
+              </ul>
+
+          </nav>
+          <!-- End of Topbar -->
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+              <%= yield %>
+          </div>
+          <!-- /.container-fluid -->
+
+          </div>
+          <!-- End of Main Content -->
+
+          <!-- Footer -->
+          <footer class="sticky-footer bg-white">
+              <div class="container my-auto">
+                  <div class="copyright text-center my-auto">
+                      <span>Copyright &copy; SMK MHS Batam 2022</span>
+                  </div>
+              </div>
+          </footer>
+          <!-- End of Footer -->
+
+      </div>
+      <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
   </body>
 </html>

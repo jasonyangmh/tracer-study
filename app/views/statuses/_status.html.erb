@@ -1,37 +1,11 @@
-<div id="<%= dom_id status %>">
-  <p>
-    <strong>Category:</strong>
-    <%= status.category %>
-  </p>
-
-  <p>
-    <strong>Name:</strong>
-    <%= status.name %>
-  </p>
-
-  <p>
-    <strong>Position:</strong>
-    <%= status.position %>
-  </p>
-
-  <p>
-    <strong>Address:</strong>
-    <%= status.address %>
-  </p>
-
-  <p>
-    <strong>Start date:</strong>
-    <%= status.start_date %>
-  </p>
-
-  <p>
-    <strong>End date:</strong>
-    <%= status.end_date %>
-  </p>
-
-  <p>
-    <strong>Comment:</strong>
-    <%= status.comment %>
-  </p>
-
-</div>
+<tr id="<%= dom_id status %>">
+  <td><%= status.category %></td>
+  <td><%= status.name %></td>
+  <td><%= status.position %></td>
+  <td><%= status.address %></td>
+  <td><%= status.start_date %></td>
+  <td><%= status.end_date %></td>
+  <td><%= status.comment %></td>
+  <td><%= link_to '<span class="text">Edit</span>'.html_safe, edit_status_path(status), class: "btn btn-warning" %></td>
+  <td><%= button_to '<span class="text">Hapus</span>'.html_safe, status, method: :delete, class: "btn btn-danger" %></td>
+</tr>
