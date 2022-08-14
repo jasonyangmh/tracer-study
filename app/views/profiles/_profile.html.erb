@@ -1,11 +1,65 @@
-<tr id="<%= dom_id profile %>">
-  <td><%= profile.name %></td>
-  <td><%= profile.birthplace %></td>
-  <td><%= profile.birthdate %></td>
-  <td><%= profile.gender %></td>
-  <td><%= profile.address %></td>
-  <td><%= profile.phone_number %></td>
-  <td><%= profile.major %></td>
-  <td><%= profile.graduation_year %></td>
-  <td><%= link_to "Tampilkan", profile %></td>
-</tr>
+<!-- Basic Card Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Profil</h6>
+  </div>
+  <div class="card-body" id="<%= dom_id profile %>">
+    <div class="field form-group">
+      <div class="col-sm-6 mb-3 mb-sm-0">
+        <label>Nama</label>
+        <input type="text" class="form-control form-control-user" placeholder="<%= profile.name %>" disabled>
+      </div>
+    </div>
+    <div class="field form-group">
+      <div class="col-sm-6 mb-3 mb-sm-0">
+        <label>Tempat lahir</label>
+        <input type="text" class="form-control form-control-user" placeholder="<%= profile.birthplace %>" disabled>
+      </div>
+    </div>
+    <div class="field form-group">
+      <div class="col-sm-6 mb-3 mb-sm-0">
+        <label>Tanggal lahir</label>
+        <input type="text" class="form-control form-control-user" placeholder="<%= profile.birthdate %>" disabled>
+      </div>
+    </div>
+    <div class="field form-group">
+      <div class="col-sm-6 mb-3 mb-sm-0">
+        <label>Jenis kelamin</label>
+        <input type="text" class="form-control form-control-user" placeholder="<%= profile.gender %>" disabled>
+      </div>
+    </div>
+    <div class="field form-group">
+      <div class="col-sm-6 mb-3 mb-sm-0">
+        <label>Jenis kelamin</label>
+        <input type="text" class="form-control form-control-user" placeholder="<%= profile.gender %>" disabled>
+      </div>
+    </div>
+    <div class="field form-group">
+      <div class="col-sm-6 mb-3 mb-sm-0">
+        <label>Jenis kelamin</label>
+        <input type="text" class="form-control form-control-user" placeholder="<%= profile.gender %>" disabled>
+      </div>
+    </div>
+    <div class="field form-group">
+      <div class="col-sm-6 mb-3 mb-sm-0">
+        <label>Nomor telepon</label>
+        <input type="text" class="form-control form-control-user" placeholder="<%= profile.phone_number %>" disabled>
+      </div>
+    </div>
+    <div class="field form-group">
+      <div class="col-sm-6 mb-3 mb-sm-0">
+        <label>Jurusan</label>
+        <input type="text" class="form-control form-control-user" placeholder="<%= profile.major %>" disabled>
+      </div>
+    </div>
+    <div class="field form-group">
+      <div class="col-sm-6 mb-3 mb-sm-0">
+        <label>Tahun kelulusan</label>
+        <input type="text" class="form-control form-control-user" placeholder="<%= profile.graduation_year %>" disabled>
+      </div>
+    </div>
+    <% if user_signed_in? %>
+      <%= link_to "Edit", edit_profile_path(profile), class: "btn btn-warning" %>
+    <% end %>
+  </div>
+</div>
