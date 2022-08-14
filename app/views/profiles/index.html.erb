@@ -37,7 +37,7 @@
             </tfoot>
             <tbody>
               <% @profiles.each do |profile| %>
-                <%= render profile %>
+                <%= render partial: "profile_row", locals: {profile: profile} %>
               <% end %>
             </tbody>
           </table>
