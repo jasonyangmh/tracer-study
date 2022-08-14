@@ -42,7 +42,11 @@ class StatusesController < ApplicationController
   def update
     respond_to do |format|
       if @status.update(status_params)
-        format.html { redirect_to statuses_url, notice: "Status was successfully updated." }
+        if admin_signed_in?
+          format.html { redirect_to profile_url(Profile.find_by(user_id: @status.user_id)), notice: "Status was successfully updated." }
+        elsif user_signed_in?
+          format.html { redirect_to statuses_url, notice: "Status was successfully updated." }
+        end
         format.json { render :show, status: :ok, location: @status }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -56,7 +60,11 @@ class StatusesController < ApplicationController
     @status.destroy
 
     respond_to do |format|
-      format.html { redirect_to statuses_url, notice: "Status was successfully destroyed." }
+      if admin_signed_in?
+        format.html { redirect_to profile_url(Profile.find_by(user_id: @status.user_id)), notice: "Status was successfully destroyed." }
+      elsif user_signed_in?
+        format.html { redirect_to statuses_url, notice: "Status was successfully destroyed." }
+      end
       format.json { head :no_content }
     end
   end
