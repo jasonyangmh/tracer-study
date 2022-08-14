@@ -31,3 +31,7 @@
     </div>
   </div>
 </div>
+
+<% if user_signed_in? %>
+  <%= link_to "Tambahkan status", new_status_path, class: "btn btn-primary" %>
+<% end %>
