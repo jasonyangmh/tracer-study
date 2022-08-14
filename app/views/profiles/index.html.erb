@@ -22,19 +22,6 @@
               <th></th>
             </tr>
             </thead>
-            <tfoot>
-              <tr>
-                <th>Nama</th>
-                <th>Tempat lahir</th>
-                <th>Tanggal lahir</th>
-                <th>Jenis kelamin</th>
-                <th>Alamat</th>
-                <th>Nomor telepon</th>
-                <th>Jurusan</th>
-                <th>Tahun kelulusan</th>
-                <th></th>
-              </tr>
-            </tfoot>
             <tbody>
               <% @profiles.each do |profile| %>
                 <%= render partial: "profile_row", locals: {profile: profile} %>
