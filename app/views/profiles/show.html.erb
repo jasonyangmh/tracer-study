@@ -8,3 +8,39 @@
 
   <%= button_to "Destroy this profile", @profile, method: :delete %>
 </div>
+
+<% if admin_signed_in? %>
+  <% if @statuses %>
+    <div id="statuses">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Status</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+              <tr>
+                <th>Kategori</th>
+                <th>Nama</th>
+                <th>Posisi</th>
+                <th>Alamat</th>
+                <th>Tanggal mulai</th>
+                <th>Tanggal selesai</th>
+                <th>Komentar</th>
+                <th></th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+                <% @statuses.each do |status| %>
+                  <%= render partial: "statuses/status", locals: {status: status} %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

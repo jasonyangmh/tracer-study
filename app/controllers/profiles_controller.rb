@@ -14,6 +14,7 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1 or /profiles/1.json
   def show
+    @statuses = Status.where(user_id: @profile.user_id)
   end
 
   # GET /profiles/new
