@@ -2,6 +2,8 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "@fortawesome/fontawesome-free"
+import "chartkick"
+import "Chart.bundle"
 
 //= jquery.min.js
 //= bootstrap.bundle.min.js
