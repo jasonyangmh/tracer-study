@@ -8,4 +8,5 @@ class Profile < ApplicationRecord
   validates :phone_number, presence: true
   validates :major, presence: true
   validates :graduation_year, presence: true
+  validates :user_id, uniqueness: true
 end
