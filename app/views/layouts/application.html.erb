@@ -26,7 +26,7 @@
           <!-- Sidebar - Brand -->
           <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
               <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fa-solid fa-school"></i>
+                <i class="fas fa-school"></i>
               </div>
               <div class="sidebar-brand-text mx-3">SMK MHS Batam</div>
           </a>
@@ -39,10 +39,15 @@
               <%= link_to '<i class="fas fa-gauge"></i><span>Dashboard</span>'.html_safe, statuses_path, class: "btn nav-link" %>
           </li>
 
+          <!-- Nav Item - Status -->
+          <li class="nav-item">
+              <%= link_to '<i class="fas fa-briefcase"></i><span>Status</span>'.html_safe, statuses_path, class: "btn nav-link" %>
+          </li>
+
           <% if admin_signed_in? %>
           <!-- Nav Item - Alumni -->
           <li class="nav-item">
-              <%= link_to '<i class="fas fa-graduation-cap"></i></i><span>Alumni</span>'.html_safe, profiles_path, class: "btn nav-link" %>
+              <%= link_to '<i class="fas fa-graduation-cap"></i><span>Alumni</span>'.html_safe, profiles_path, class: "btn nav-link" %>
           </li>
           <% end %>
 
