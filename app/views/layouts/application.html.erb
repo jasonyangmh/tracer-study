@@ -63,7 +63,13 @@
                   <!-- Nav Item - User Information -->
                   <li class="nav-item">
                       <%= link_to profiles_path, class: "nav-link" do %>
-                          <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= current_user.email %></span>
+                          <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                              <% if current_user.profile.name? %>
+                                  <%= current_user.profile.name %>
+                              <% else %>
+                                  <%= current_user.email %>
+                              <% end %>
+                          </span>
                           <%= image_tag("undraw_profile.svg", class: "img-profile rounded-circle") %>
                       <% end %>
                   </li>
