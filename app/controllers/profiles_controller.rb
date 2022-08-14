@@ -5,6 +5,10 @@ class ProfilesController < ApplicationController
   def index
     if admin_signed_in?
       @profiles = Profile.all
+      respond_to do |format|
+        format.html
+        format.csv { send_data Profile.to_csv, filename: "profiles-#{DateTime.now.strftime("%d%m%Y%H%M")}.csv"}
+      end
     elsif user_signed_in?
       redirect_to new_profile_url
     end
