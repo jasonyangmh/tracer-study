@@ -3,10 +3,14 @@ class StatusesController < ApplicationController
 
   # GET /statuses or /statuses.json
   def index
-    if user_signed_in?
-      @statuses = Status.where(user_id: current_user.id)
-    elsif admin_signed_in?
+    if admin_signed_in?
       @statuses = Status.all
+      respond_to do |format|
+        format.html
+        format.csv { send_data Status.to_csv, filename: "statuses-#{DateTime.now.strftime("%d%m%Y%H%M")}.csv"}
+      end
+    elsif user_signed_in?
+      @statuses = Status.where(user_id: current_user.id)
     end
   end
 
